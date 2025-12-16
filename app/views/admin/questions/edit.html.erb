@@ -1,0 +1,41 @@
+<!-- app/views/admin/quizzes/edit.html.erb -->
+<h2><%= @quiz.title %></h2>
+
+<h3>Add Question</h3>
+
+<%= form_with url: admin_quiz_questions_path(@quiz) do %>
+  <input name="question[content]" placeholder="Question text">
+  <select name="question[question_type]">
+    <option value="mcq">MCQ</option>
+    <option value="boolean">True / False</option>
+    <option value="text">Text</option>
+  </select>
+  <button>Add</button>
+<% end %>
+
+<hr>
+
+<h3>Questions</h3>
+<% @quiz.questions.each do |q| %>
+  <p><strong><%= q.content %></strong></p>
+
+  <% if q.mcq? || q.boolean? %>
+    <%= form_with url: admin_question_options_path(q) do %>
+      <input name="option[content]" placeholder="Option text">
+      <label>
+        <input type="checkbox" name="option[correct]">
+        Correct
+      </label>
+      <button>Add Option</button>
+    <% end %>
+  <% end %>
+
+  <ul>
+    <% q.options.each do |o| %>
+      <li>
+        <%= o.content %>
+        <% if o.correct %>✔<% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,5 +1,4 @@
-<%= form_with model: [:admin, @quiz] do |f| %>
-    <%= f.text_field :title, placeholder: "Quiz Title" %>
-    <%= f.submit "Create Quiz" %>
-<%end%>
-
+<%= form_with model: [:admin, @quiz], local: true do |f| %>
+  <%= f.text_field :title, placeholder: 'Quiz Title' %>
+  <%= f.submit 'Create Quiz' %>
+<% end %>

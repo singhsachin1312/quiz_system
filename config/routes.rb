@@ -18,9 +18,17 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy'
 
     resources :quizzes do 
-      resources :questions
+      resources :questions, only: :create
+    end
+
+    resources :questions do
+      resources :options, only: :create
     end
   end
 
+  resources :quizzes, only: :show do
+    post :submit, on: :member
+  end
 
+  get 'quiz_result/:id', to: 'quizzes#result', as: :result_quiz
 end

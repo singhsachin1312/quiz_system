@@ -5,7 +5,7 @@ class Admin::QuizzesController < Admin::BaseController
   end
 
   def new
-    @quix = Quiz.new
+    @quiz = Quiz.new
   end
 
   def create
