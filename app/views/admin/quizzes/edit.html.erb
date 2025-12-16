@@ -4,7 +4,7 @@
 <h3>Add Question</h3>
 
 <%= form_with url: admin_quiz_questions_path(@quiz) do %>
-  <input name="question[content]" placeholder="Question text">
+  <input name="question[content]" placeholder="Question text" required>
   <select name="question[question_type]">
     <option value="mcq">MCQ</option>
     <option value="boolean">True / False</option>
@@ -21,7 +21,7 @@
 
   <% if q.mcq? || q.boolean? %>
     <%= form_with url: admin_question_options_path(q) do %>
-      <input name="option[content]" placeholder="Option text">
+      <input name="option[content]" placeholder="Option text" required>
       <label>
         <input type="checkbox" name="option[correct]">
         Correct

@@ -3,4 +3,5 @@ class Question < ApplicationRecord
   has_many  :options, dependent: :destroy
 
   enum :question_type, { mcq: 0, boolean: 1, text: 2 }
+  validates :content, presence: true
 end

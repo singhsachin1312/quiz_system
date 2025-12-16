@@ -1,4 +1,9 @@
 <%= form_with model: [:admin, @quiz], local: true do |f| %>
-  <%= f.text_field :title, placeholder: 'Quiz Title' %>
-  <%= f.submit 'Create Quiz' %>
+  <%= f.label :title, "Quiz Title" %><br>
+  <%= f.text_field :title, required: true %>
+  <div>
+    <%= f.label :published, "Publish Quiz?" %><br>
+    <%= f.check_box :published %>
+  </div>
+    <%= f.submit 'Create Quiz' %>
 <% end %>

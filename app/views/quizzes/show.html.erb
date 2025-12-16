@@ -1,0 +1,17 @@
+<!-- app/views/quizzes/show.html.erb -->
+<h1><%= @quiz.title %></h1>
+
+<%= form_with url: submit_quiz_path(@quiz) do %>
+  <% @quiz.questions.each do |q| %>
+    <p><%= q.content %></p>
+
+    <% q.options.each do |o| %>
+      <label>
+        <input type="radio" name="answers[<%= q.id %>]" value="<%= o.id %>">
+        <%= o.content %>
+      </label><br>
+    <% end %>
+  <% end %>
+
+  <button>Submit Quiz</button>
+<% end %>
