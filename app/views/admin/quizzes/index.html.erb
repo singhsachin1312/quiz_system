@@ -1,0 +1,31 @@
+<h1>Quizzes</h1>
+<a href="<%= new_admin_quiz_path %>" >New Quiz</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Published</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quizzes.each do |quiz| %>
+      <tr>
+        <td><%= quiz.title %></td>
+
+        <td>
+          <% if quiz.published %>
+            <span class="badge badge-success">Yes</span>
+          <% else %>
+            <span class="badge badge-secondary">No</span>
+          <% end %>
+        </td>
+
+        <td>
+          <%= link_to 'Edit', edit_admin_quiz_path(quiz), class: 'btn btn-sm btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

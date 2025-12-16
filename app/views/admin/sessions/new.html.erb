@@ -1,0 +1,33 @@
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= form_with url: admin_login_path,
+    method: :post,
+    local: true do %>
+
+  <div class="field">
+    <label>Email</label>
+    <input type="email"
+           name="email"
+           required
+           autofocus
+           autocomplete="email">
+  </div>
+
+  <div class="field">
+    <label>Password</label>
+    <input type="password"
+           name="password"
+           required
+           autocomplete="current-password">
+  </div>
+
+  <div class="actions">
+    <input type="submit" value="Login" class="btn btn-primary">
+  </div>
+
+<% end %>
