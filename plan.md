@@ -27,9 +27,9 @@
   Added root page with Admin and User navigation
 
 ## Next Steps
-  Add authentication UI
+  Add authentication UI,Improve admin UX with JS
+  DB level changes for score after submitting the quiz, improve score logic
   Handle validation error messages on UI properly.
-  Improve admin UX with JS
   User accounts
   Timers and analytics
   Question randomization
