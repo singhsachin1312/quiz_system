@@ -1,0 +1,14 @@
+<h2>Available Quizzes</h2>
+<ul>
+  <%if @quizzes.present? %>
+    <% @quizzes.each do |quiz| %>
+      <li>
+        <a href="<%= quiz_path(quiz) %>">
+          <%= quiz.title %>
+        </a>
+      </li>
+    <% end %>
+  <%else%>
+    No Quiz Available
+  <%end%>
+</ul>

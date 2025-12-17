@@ -27,9 +27,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :quizzes, only: :show do
+  resources :quizzes, only: [:index, :show] do
     post :submit, on: :member
   end
 
   get 'quiz_result/:id', to: 'quizzes#result', as: :result_quiz
+  root "home#index"
 end
+

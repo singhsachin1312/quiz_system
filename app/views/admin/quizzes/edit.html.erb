@@ -1,41 +1,70 @@
-<!-- app/views/admin/quizzes/edit.html.erb -->
 <h2><%= @quiz.title %></h2>
 
 <h3>Add Question</h3>
 
-<%= form_with url: admin_quiz_questions_path(@quiz) do %>
-  <input name="question[content]" placeholder="Question text" required>
-  <select name="question[question_type]">
+<%= form_with url: admin_quiz_questions_path(@quiz), local: true do %>
+  <input type="text" name="question[content]" placeholder="Question text" required>
+
+  <select name="question[question_type]" id="question_type">
     <option value="mcq">MCQ</option>
     <option value="boolean">True / False</option>
     <option value="text">Text</option>
   </select>
-  <button>Add</button>
+
+  <div id="boolean_correct" style="display:none">
+    <label>
+      <input type="radio" name="correct_boolean" value="true"> True
+    </label>
+    <label>
+      <input type="radio" name="correct_boolean" value="false"> False
+    </label>
+  </div>
+
+  <button type="submit">Add Question</button>
 <% end %>
 
 <hr>
 
 <h3>Questions</h3>
-<% @quiz.questions.each do |q| %>
-  <p><strong><%= q.content %></strong></p>
 
-  <% if q.mcq? || q.boolean? %>
-    <%= form_with url: admin_question_options_path(q) do %>
-      <input name="option[content]" placeholder="Option text" required>
+<% @quiz.questions.each do |q| %>
+  <p>
+    <strong><%= q.content %></strong>
+    (<%= q.question_type %>)
+  </p>
+
+  <!-- 🔴 THIS BLOCK IS REQUIRED FOR MCQ -->
+  <% if q.mcq? %>
+    <%= form_with url: admin_question_options_path(q), local: true do %>
+      <input type="text"
+             name="option[content]"
+             placeholder="Option text"
+             required>
+
       <label>
         <input type="checkbox" name="option[correct]">
         Correct
       </label>
-      <button>Add Option</button>
+
+      <button type="submit">Add Option</button>
     <% end %>
   <% end %>
 
-  <ul>
-    <% q.options.each do |o| %>
-      <li>
-        <%= o.content %>
-        <% if o.correct %>✔<% end %>
-      </li>
-    <% end %>
-  </ul>
+  <% if q.options.any? %>
+    <ul>
+      <% q.options.each do |o| %>
+        <li>
+          <%= o.content %>
+          <% if o.correct %>✔<% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
+
+<script>
+  document.getElementById("question_type").addEventListener("change", function () {
+    document.getElementById("boolean_correct").style.display =
+      this.value === "boolean" ? "block" : "none";
+  });
+</script>

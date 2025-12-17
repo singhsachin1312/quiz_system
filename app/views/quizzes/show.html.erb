@@ -1,17 +1,30 @@
-<!-- app/views/quizzes/show.html.erb -->
 <h1><%= @quiz.title %></h1>
 
-<%= form_with url: submit_quiz_path(@quiz) do %>
-  <% @quiz.questions.each do |q| %>
-    <p><%= q.content %></p>
+<%= form_with url: submit_quiz_path(@quiz),
+              method: :post,
+              local: true do %>
 
-    <% q.options.each do |o| %>
-      <label>
-        <input type="radio" name="answers[<%= q.id %>]" value="<%= o.id %>">
-        <%= o.content %>
-      </label><br>
+  <% @quiz.questions.each do |q| %>
+    <p><strong><%= q.content %></strong></p>
+
+    <% if q.mcq? || q.boolean? %>
+      <% q.options.each do |o| %>
+        <label>
+          <input type="radio"
+                 name="answers[<%= q.id %>]"
+                 value="<%= o.id %>">
+          <%= o.content.capitalize %>
+        </label><br>
+      <% end %>
+
+    <% elsif q.text? %>
+      <input type="text"
+             name="text_answers[<%= q.id %>]"
+             placeholder="Your answer">
     <% end %>
+
   <% end %>
 
-  <button>Submit Quiz</button>
+  <br>
+  <button type="submit">Submit Quiz</button>
 <% end %>
