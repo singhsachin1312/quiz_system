@@ -3,23 +3,22 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+Local Setup-
+Prerequisites:
 
-* Ruby version
+Ruby - 3.3.0
+Rails - 7.2.3
+PostgreSQL
 
-* System dependencies
+Steps - 
+git clone https://github.com/singhsachin1312/quiz_system.git
+cd quiz_system
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed
+rails s
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# quiz_system
+Email: admin@example.com
+Password: password
