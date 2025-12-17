@@ -5,7 +5,7 @@
               local: true do %>
 
   <% @quiz.questions.each do |q| %>
-    <p><strong><%= q.content %></strong></p>
+    <p><strong>Question: <%= q.content %></strong></p>
 
     <% if q.mcq? || q.boolean? %>
       <% q.options.each do |o| %>
@@ -25,6 +25,6 @@
 
   <% end %>
 
-  <br>
+  <br><br>
   <button type="submit">Submit Quiz</button>
 <% end %>

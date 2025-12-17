@@ -1,4 +1,4 @@
-class Admin::QuestionsController < Admin::BaseController
+class Admin::QuestionsController < ApplicationController
   def create
     quiz = Quiz.find(params[:quiz_id])
     question = quiz.questions.create!(question_params)

@@ -1,3 +1,4 @@
+<a href="/"> GO Home</a>
 <h2><%= @quiz.title %></h2>
 
 <h3>Add Question</h3>
@@ -29,11 +30,10 @@
 
 <% @quiz.questions.each do |q| %>
   <p>
-    <strong><%= q.content %></strong>
+    <strong>Question: <%= q.content %></strong>
     (<%= q.question_type %>)
   </p>
 
-  <!-- 🔴 THIS BLOCK IS REQUIRED FOR MCQ -->
   <% if q.mcq? %>
     <%= form_with url: admin_question_options_path(q), local: true do %>
       <input type="text"
