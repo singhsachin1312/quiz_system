@@ -86,3 +86,4 @@ production:
   database: quiz_system_production
   username: quiz_system
   password: <%= ENV["QUIZ_SYSTEM_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
